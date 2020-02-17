@@ -49,7 +49,7 @@ export const addNewSkill = /* GraphQL */ `
   }
 `;
 export const editEmployee = /* GraphQL */ `
-  mutation EditEmployee($input: UpdateEmployeeInput!) {
+  mutation EditEmployee($input: EditEmployeeInput!) {
     editEmployee(input: $input) {
       id
       firstname
@@ -76,7 +76,7 @@ export const editEmployee = /* GraphQL */ `
   }
 `;
 export const editAddress = /* GraphQL */ `
-  mutation EditAddress($input: UpdateAddressInput!) {
+  mutation EditAddress($input: EditAddressInput!) {
     editAddress(input: $input) {
       id
       line1
@@ -88,7 +88,7 @@ export const editAddress = /* GraphQL */ `
   }
 `;
 export const editSkill = /* GraphQL */ `
-  mutation EditSkill($input: UpdateSkillInput!) {
+  mutation EditSkill($input: EditSkillInput!) {
     editSkill(input: $input) {
       id
       skillName

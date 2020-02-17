@@ -21,18 +21,20 @@ type Skill @model {
 }
 
 type Mutation {
-  addNewEmployee(input: AddNewEmployeeInput!): Employee @function(name: "employeeCRUD-${env}")
-  addNewAddress(input: AddNewAddressInput!): Address @function(name: "employeeCRUD-${env}")
-  addNewSkill(input: AddNewSkillInput!): Skill @function(name: "employeeCRUD-${env}")
-  editEmployee(input: UpdateEmployeeInput!): Employee @function(name: "employeeCRUD-${env}")
-  editAddress(input: UpdateAddressInput!): Address @function(name: "employeeCRUD-${env}")
-  editSkill(input: UpdateSkillInput!): Skill @function(name: "employeeCRUD-${env}")  
+  addNewEmployee(input: AddNewEmployeeInput!): Employee @function(name: "employeeCRUDfunc-${env}")
+  addNewAddress(input: AddNewAddressInput!): Address @function(name: "employeeCRUDfunc-${env}")
+  addNewSkill(input: AddNewSkillInput!): Skill @function(name: "employeeCRUDfunc-${env}")
+  editEmployee(input: EditEmployeeInput!): Employee @function(name: "employeeCRUDfunc-${env}")
+  editAddress(input: EditAddressInput!): Address @function(name: "employeeCRUDfunc-${env}")
+  editSkill(input: EditSkillInput!): Skill @function(name: "employeeCRUDfunc-${env}")
 }
 
 input AddNewEmployeeInput {
   id: ID
   firstname: String!
   lastname: String!
+  address: [AddNewAddressInput]
+  skills: [AddNewSkillInput]
 }
 
 input AddNewAddressInput {
@@ -53,13 +55,15 @@ input AddNewSkillInput {
 }
 
 
-input UpdateEmployeeInput {
+input EditEmployeeInput {
   id: ID!
   firstname: String
   lastname: String
+  address:[EditAddressInput]
+  skills: [EditSkillInput]
 }
 
-input UpdateAddressInput {
+input EditAddressInput {
   id: ID!
   line1: String
   line2: String
@@ -70,7 +74,7 @@ input UpdateAddressInput {
 }
 
 
-input UpdateSkillInput {
+input EditSkillInput {
   id: ID!
   skillName: String
   employeeSkillsId: ID

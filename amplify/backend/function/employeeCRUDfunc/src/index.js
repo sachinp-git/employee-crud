@@ -6,60 +6,33 @@ var apiEmployeeCrudGraphQLAPIIdOutput = process.env.API_EMPLOYEECRUD_GRAPHQLAPII
 var apiEmployeeCrudGraphQLAPIEndpointOutput = process.env.API_EMPLOYEECRUD_GRAPHQLAPIENDPOINTOUTPUT
 
 Amplify Params - DO NOT EDIT */
-const Amplify = require("aws-amplify");
 
-var environment = process.env.ENV
-var region = process.env.REGION
-var apiEmployeeCrudGraphQLAPIIdOutput = process.env.API_EMPLOYEECRUD_GRAPHQLAPIIDOUTPUT
-var apiEmployeeCrudGraphQLAPIEndpointOutput = process.env.API_EMPLOYEECRUD_GRAPHQLAPIENDPOINTOUTPUT
-var apikey = process.env.API_KEY
+const models = require("./models");
 
-const config =  {
-    "aws_project_region": environment,
-    "aws_appsync_graphqlEndpoint": apiEmployeeCrudGraphQLAPIEndpointOutput,
-    "aws_appsync_region": environment,
-    "aws_appsync_authenticationType": "API_KEY",
-    "aws_appsync_apiKey": apikey
-};
-
-const listEmployees = /* GraphQL */ `
-  query ListEmployees(
-    $filter: ModelEmployeeFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listEmployees(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        firstname
-        lastname
-        address {
-          nextToken
-        }
-        skills {
-          nextToken
-        }
-      }
-      nextToken
-    }
+const resolvers = {
+  Mutation: {
+    addNewEmployee: models.createEmployee,
+    addNewSkill: models.createSkill,
+    addNewAddress: models.createAddress,
+    editSkill: models.updateSkill,
+    editAddress: models.updateAddress,
+    removeAddress: models.deleteAddress,
+    removeSkill: models.deleteSkill,
+    editEmployee: models.updateEmployee
   }
-`;
-
-Amplify.default.configure(config)
+}
 
 exports.handler = async (event) => {
-    console.log("Variables ==>", environment, region, apiEmployeeCrudGraphQLAPIEndpointOutput, apiEmployeeCrudGraphQLAPIIdOutput)
+    //console.log("Variables ==>", environment, region, apiEmployeeCrudGraphQLAPIEndpointOutput, apiEmployeeCrudGraphQLAPIIdOutput)
     // TODO implement
-    let result
-    try {
-         result = await Amplify.API.graphql(Amplify.graphqlOperation(listEmployees));
-    } catch(e) {
-        console.log(e)
+    console.log("EVENT --> ",JSON.stringify(event),2);
+    const evetType = event.typeName;
+    const eventName = event.fieldName;
+    const eventHandler = resolvers[evetType][eventName];
+    console.log(eventHandler);
+    if (eventHandler) {
+        const result = await eventHandler(event.arguments)
+        console.log("Handler result",JSON.stringify(result,6))
+        return result;
     }
-    console.log(result);
-    const response = {
-        statusCode: 200,
-        body: JSON.stringify('Hello from Lambda!'),
-    };
-    return response;
 };
