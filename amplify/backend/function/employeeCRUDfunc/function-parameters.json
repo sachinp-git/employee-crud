@@ -1,0 +1,11 @@
+{
+    "permissions": {
+        "api": {
+            "employeeCrud": [
+                "create",
+                "update",
+                "delete"
+            ]
+        }
+    }
+}
