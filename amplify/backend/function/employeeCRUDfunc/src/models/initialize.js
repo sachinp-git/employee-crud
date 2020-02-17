@@ -24,4 +24,4 @@ const config =  {
 };
 
 
-module.exports.aws = awsmobile;
+module.exports.aws = config;
