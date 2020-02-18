@@ -28,7 +28,7 @@ amplify push
 
 ###  Add API key in lambda function
 
-1. Copy thr API key from the aws exports folder.
+1. Copy thr API key from the aws exports file generated.
 
 2. Go to the deployed function in lambda services on console.
 

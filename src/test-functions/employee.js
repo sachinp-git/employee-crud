@@ -1,27 +1,53 @@
 import Amplify, { API, graphqlOperation } from "aws-amplify";
-const config = require("../aws-exports");
-Amplify.configure(config.config);
-import { addNewEmployee, editEmployee } from '../graphql/mutations.js';
+import config from '../aws-exports';
+Amplify.configure(config);
+import { addNewEmployee, editEmployee, removeEmployee } from '../graphql/mutations.js';
 import { listEmployees, getEmployee } from '../graphql/queries'
 
 async function addNewEmployeefunc (data) {
-    const newEmployee = await API.graphql(graphqlOperation(addNewEmployee, data));
-    return newEmployee
+    try {
+        const newEmployee = await API.graphql(graphqlOperation(addNewEmployee, data));
+        return newEmployee
+    } catch (e) {
+        return e
+    }
 }
 
 async function editEmployeefunc (data) {
-    const updatedEmployee = await API.graphql(graphqlOperation(editEmployee, data));
-    return updatedEmployee
+    try {
+        const updatedEmployee = await API.graphql(graphqlOperation(editEmployee, data));
+        return updatedEmployee
+    } catch (e) {
+        return e
+    }
+    
 }
 
 async function listEmployeesfunc () {
-    const employeeList = await API.graphql(graphqlOperation(listEmployees));
-    return employeeList
+    try {
+        const employeeList = await API.graphql(graphqlOperation(listEmployees));
+        return employeeList   
+    } catch(e) {
+        return e
+    }
 }
 
 async function getEmployeefunc (data) {
-    const employee = await API.graphql(graphqlOperation(getEmployee, data));
-    return employee
+    try {
+        const employee = await API.graphql(graphqlOperation(getEmployee, data));
+        return employee
+    } catch(e) {
+        return e
+    }
 }
 
-export {addNewEmployeefunc, editEmployeefunc, getEmployeefunc, listEmployeesfunc};
+async function deleteEmployeeFunc (data) {
+    try {
+        const employee = await API.graphql(graphqlOperation(removeEmployee, data));
+        return employee
+    } catch(e) {
+        return e
+    }
+}
+
+export {addNewEmployeefunc, editEmployeefunc, getEmployeefunc, listEmployeesfunc, deleteEmployeeFunc};

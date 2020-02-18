@@ -4,7 +4,7 @@ const AddressModel = require("./address");
 const SkillModel = require("./skills");
 Amplify.default.configure(config.aws);
 
-export const deleteEmployeeMutation = /* GraphQL */ `
+const deleteEmployeeMutation = /* GraphQL */ `
   mutation DeleteEmployee(
     $input: DeleteEmployeeInput!
     $condition: ModelEmployeeConditionInput

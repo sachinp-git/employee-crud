@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:employee": "jest employee.test.js"
+    "test:employee": "jest employee.test.js",
+    "test:address": "jest address.test.js"
   },
   "repository": {
     "type": "git",

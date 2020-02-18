@@ -1,4 +1,10 @@
-import { addNewEmployeefunc, editEmployeefunc, listEmployeesfunc, getEmployeefunc } from  "./test-functions/employee";
+import {
+  addNewEmployeefunc,
+  editEmployeefunc,
+  listEmployeesfunc,
+  getEmployeefunc,
+  deleteEmployeeFunc
+} from "./test-functions/employee";
 
 // test('Add new employee', async ()=> {
 
@@ -23,37 +29,36 @@ import { addNewEmployeefunc, editEmployeefunc, listEmployeesfunc, getEmployeefun
 //     expect(result.errors).toBeUndefined();
 // })
 
-// test('Add new employee with skill', async ()=> {
+test('Add new employee with skill', async ()=> {
 
-//     const data = {
-//         input: {
-//             firstname: "Cristiano",
-//             lastname: "Ronaldo",
-//             address: [
-//                 {
-//                     line1: "A-2 604",
-//                     line2: "Manutd",
-//                     zipcode: "400007",
-//                     city: "manchester",
-//                     state: "england"
-//                 }
-//             ],
-//             skills: [
-//                 {
-//                     skillName: 'shoot'
-//                 },
-//                 {
-//                     skillName: 'speed'
-//                 }
-//             ]
-//         }
-//     }
-//     const result = await addNewEmployeefunc(data);
-//     console.log(JSON.stringify(result,6));
-//     expect(result.data).not.toBeUndefined();
-//     expect(result.errors).toBeUndefined();
-// })
-
+    const data = {
+        input: {
+            firstname: "Cristiano",
+            lastname: "Ronaldo",
+            address: [
+                {
+                    line1: "A-2 604",
+                    line2: "Manutd",
+                    zipcode: "400007",
+                    city: "manchester",
+                    state: "england"
+                }
+            ],
+            skills: [
+                {
+                    skillName: 'shoot'
+                },
+                {
+                    skillName: 'speed'
+                }
+            ]
+        }
+    }
+    const result = await addNewEmployeefunc(data);
+    console.log(JSON.stringify(result,6));
+    expect(result.data).not.toBeUndefined();
+    expect(result.errors).toBeUndefined();
+})
 
 // test('list employees', async ()=> {
 //     const result = await listEmployeesfunc();
@@ -75,25 +80,38 @@ import { addNewEmployeefunc, editEmployeefunc, listEmployeesfunc, getEmployeefun
 //     expect(result.data).not.toBeNull();
 // })
 
-test('update existing employee', async () => {
-    const data = {
-        input:{
-            id: "4e2b0841-8b83-4aa6-9b03-9ad02a65e462",
-            lastname: "Moh",
-            firstname: "Salah",
-            address: [
-                {
-                    id: "00129c06-7aad-4f6f-8937-82849a6c88c4",
-                    city: "Egypt"
-                }
-            ]
-        } 
-    }
+// test("update existing employee", async () => {
+//   const data = {
+//     input: {
+//       id: "4e2b0841-8b83-4aa6-9b03-9ad02a65e462",
+//       lastname: "Moh",
+//       firstname: "Salah",
+//       address: [
+//         {
+//           id: "00129c06-7aad-4f6f-8937-82849a6c88c4",
+//           city: "Egypt"
+//         }
+//       ]
+//     }
+//   };
 
-    const result = await editEmployeefunc(data);
-    console.log(JSON.stringify(result,6))
-    expect(result.errors).toBeUndefined();
-    expect(result.data).not.toBeUndefined();
-    expect(result.data).not.toBeNull();
+//   const result = await editEmployeefunc(data);
+//   console.log(JSON.stringify(result, 6));
+//   expect(result.errors).toBeUndefined();
+//   expect(result.data).not.toBeUndefined();
+//   expect(result.data).not.toBeNull();
+// });
 
-})
+// test("delete existing employee", async () => {
+//   const data = {
+//     input: {
+//       id: "4e2b0841-8b83-4aa6-9b03-9ad02a65e462"
+//     }
+//   };
+
+//   const result = await deleteEmployeeFunc(data);
+//   console.log(JSON.stringify(result, 6));
+//   expect(result.errors).toBeUndefined();
+//   expect(result.data).not.toBeUndefined();
+//   expect(result.data).not.toBeNull();
+// });

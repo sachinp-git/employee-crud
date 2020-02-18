@@ -32,8 +32,12 @@ exports.handler = async (event) => {
     const eventHandler = resolvers[evetType][eventName];
     console.log(eventHandler);
     if (eventHandler) {
-        const result = await eventHandler(event.arguments)
-        console.log("Handler result",JSON.stringify(result,6))
-        return result;
+        try {
+          const result = await eventHandler(event.arguments)
+          console.log("Handler result",JSON.stringify(result,6))
+          return result;
+        } catch (e) {
+          return e
+        }
     }
 };

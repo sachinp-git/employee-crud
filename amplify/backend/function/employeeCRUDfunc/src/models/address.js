@@ -53,33 +53,34 @@ async function addAddress (addressData) {
     let result
     try {
          result = await Amplify.API.graphql(Amplify.graphqlOperation(createAddress, addressData));
+         console.log(JSON.stringify(result,5))
+          return result.data.createAddress;
     } catch(e) {
         console.log(e)
     }
-    console.log(JSON.stringify(result,5))
-    return result.data.createAddress;
 }
 
 async function updateAddress (addressData) {
     let result
     try {
          result = await Amplify.API.graphql(Amplify.graphqlOperation(updateAddressMutation, addressData));
-    } catch(e) {
+         console.log(JSON.stringify(result,5))
+         return result.data.updateAddress;
+        } catch(e) {
         console.log(e)
+        throw new error(e)
     }
-    console.log(JSON.stringify(result,5))
-    return result.data.updateAddress;
 }
 
 async function deleteAddress(addressData) {
     let result
     try {
          result = await Amplify.API.graphql(Amplify.graphqlOperation(deleteAddressMutation, addressData));
+         console.log(JSON.stringify(result,5), "<<<< delelted address")
+         return result.data.deleteAddress;
     } catch(e) {
-        console.log(e)
+        throw new error(e)
     }
-    console.log(JSON.stringify(result,5))
-    return result.data.deleteAddress;
 }
 
 
