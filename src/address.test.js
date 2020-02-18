@@ -5,6 +5,9 @@ import {
   deleteAddress
 } from "./test-functions/address";
 
+let generatedAddressId;
+let addressIdTodelete;
+
 test("Add new address", async () => {
   const data = {
     input: {
@@ -16,10 +19,12 @@ test("Add new address", async () => {
     }
   };
   const result = await addNewAddressfunc(data);
+  generatedAddressId = result.data.addNewAddress.id;
   console.log(JSON.stringify(result, 6));
-  expect(result.data).not.toBeUndefined();
+  expect(result.data).not.toBeNull();
   expect(result.errors).toBeUndefined();
 });
+
 
 test("Add new address without zipcode", async () => {
   const data = {
@@ -34,6 +39,24 @@ test("Add new address without zipcode", async () => {
   console.log(JSON.stringify(result, 6));
   expect(result.errors).toBeTruthy();
 });
+
+test("Add new address to delete", async () => {
+  const data = {
+    input: {
+          line1: "A-2 604",
+          line2: "Manutd",
+          city: "manchester",
+          state: "england",
+          zipcode: "400001"
+    }
+  };
+  const result = await addNewAddressfunc(data);
+  addressIdTodelete = result.data.addNewAddress.id;
+  console.log(JSON.stringify(result, 6));
+  expect(result.data).not.toBeNull();
+  expect(result.errors).toBeUndefined();
+});
+
 
 test("list addresses", async () => {
   const result = await listAddressfunc();
@@ -62,7 +85,7 @@ test("update existing address", async () => {
 test("delete existing address", async () => {
   const data = {
     input: {
-      id: "43e8a586-9f9e-4bf1-964e-f2df0a850cde"
+      id: addressIdTodelete
     }
   };
 

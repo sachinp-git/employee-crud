@@ -5,6 +5,9 @@ import {
     deleteSkill
   } from "./test-functions/skills";
   
+  let generatedSkillId;
+  let skillIdToDelete;
+
   test("Add new skill", async () => {
     const data = {
       input: {
@@ -12,6 +15,7 @@ import {
       }
     };
     const result = await addNewSkillfunc(data);
+    generatedSkillId = result.data.addNewSkill.id;
     console.log(JSON.stringify(result, 6));
     expect(result.data).not.toBeUndefined();
     expect(result.errors).toBeUndefined();
@@ -19,9 +23,7 @@ import {
   
   test("Add new skill without skill Name", async () => {
     const data = {
-      input: {
-           
-      }
+      input: {}
     };
     const result = await addNewSkillfunc(data);
     console.log(JSON.stringify(result, 6));
@@ -40,7 +42,7 @@ import {
   test("update existing skill", async () => {
     const data = {
       input: {
-        id: "0a8fddf2-a8ea-4e09-86af-92941160c575",
+        id: generatedSkillId,
         skillName: "Python"
       }
     };
@@ -52,10 +54,23 @@ import {
     expect(result.data).not.toBeNull();
   });
   
+  test("Add new skill to delete", async () => {
+    const data = {
+      input: {
+        skillName: "Angular js"
+      }
+    };
+    const result = await addNewSkillfunc(data);
+    skillIdToDelete = result.data.addNewSkill.id;
+    console.log(JSON.stringify(result, 6));
+    expect(result.data).not.toBeUndefined();
+    expect(result.errors).toBeUndefined();
+  });
+  
   test("delete existing skill", async () => {
     const data = {
       input: {
-        id: "73e3b7dc-cd1b-43b1-8947-91a46c97fb41"
+        id: skillIdToDelete
       }
     };
   

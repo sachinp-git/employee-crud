@@ -8,6 +8,7 @@ import {
 
 let empIdGenerated;
 let addressIdGenerated;
+let employeeIdToDelete;
 
 test('Add new employee', async ()=> {
 
@@ -61,6 +62,7 @@ test('Add new employee with skill', async ()=> {
     }
     const result = await addNewEmployeefunc(data);
     console.log(JSON.stringify(result,6));
+    employeeIdToDelete = result.data.addNewEmployee.id;
     expect(result.data).not.toBeUndefined();
     expect(result.errors).toBeUndefined();
 })
@@ -106,17 +108,16 @@ test("update existing employee", async () => {
   expect(result.data).not.toBeNull();
 });
 
-//Uncomment and add to id of an existing employee
-// test("delete existing employee", async () => {
-//   const data = {
-//     input: {
-//       id: "4e2b0841-8b83-4aa6-9b03-9ad02a65e462"
-//     }
-//   };
+test("delete employee created", async () => {
+  const data = {
+    input: {
+      id: employeeIdToDelete
+    }
+  };
 
-//   const result = await deleteEmployeeFunc(data);
-//   console.log(JSON.stringify(result, 6));
-//   expect(result.errors).toBeUndefined();
-//   expect(result.data).not.toBeUndefined();
-//   expect(result.data).not.toBeNull();
-// });
+  const result = await deleteEmployeeFunc(data);
+  console.log(JSON.stringify(result, 6));
+  expect(result.errors).toBeUndefined();
+  expect(result.data).not.toBeUndefined();
+  expect(result.data).not.toBeNull();
+});
