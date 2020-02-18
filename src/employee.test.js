@@ -6,6 +6,9 @@ import {
   deleteEmployeeFunc
 } from "./test-functions/employee";
 
+let empIdGenerated;
+let addressIdGenerated;
+
 test('Add new employee', async ()=> {
 
     const data = {
@@ -24,6 +27,8 @@ test('Add new employee', async ()=> {
         }
     }
     const result = await addNewEmployeefunc(data);
+    empIdGenerated = result.data.addNewEmployee.id;
+    addressIdGenerated = result.data.addNewEmployee.address.items[0].id;
     console.log(JSON.stringify(result,6));
     expect(result.data).not.toBeUndefined();
     expect(result.errors).toBeUndefined();
@@ -71,7 +76,7 @@ test('list employees', async ()=> {
 
 test('get existing employee by ID', async () => {
     const data = {
-            id: "4baccb0c-28ff-44a8-bd41-9922f6af4796"
+            id: empIdGenerated
     }
     const result = await getEmployeefunc(data);
     console.log(JSON.stringify(result,6))
@@ -83,11 +88,11 @@ test('get existing employee by ID', async () => {
 test("update existing employee", async () => {
   const data = {
     input: {
-      id: "4baccb0c-28ff-44a8-bd41-9922f6af4796",
+      id: empIdGenerated,
       firstname: "Salah",
       address: [
         {
-          id: "ea10556e-adee-4480-b6f8-e332cabdd1f4",
+          id: addressIdGenerated,
           city: "Egypt"
         }
       ]
