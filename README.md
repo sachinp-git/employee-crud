@@ -41,22 +41,22 @@ amplify push
 
 ### Test from local machine
 
-    The repo contains Jest tests to check the response for the deployed GraphQL server
+The repo contains Jest tests to check the response for the deployed GraphQL server
 
-    To test CRUD operations on employee entity
+1. To test CRUD operations on employee entity
 
-    ```sh
-    npm run test:employee
-    ```
+```sh
+npm run test:employee
+```
 
-    To test CRUD operations on address entity
- 
-    ```sh
-    npm run test:address
-    ```
+2. To test CRUD operations on address entity
 
-    To test CRUD on skills entity
+```sh
+npm run test:address
+```
 
-    ```sh
-    npm run test:address
-    ```
+3. To test CRUD on skills entity
+
+```sh
+npm run test:address
+```
