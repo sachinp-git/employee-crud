@@ -27,6 +27,9 @@ type Mutation {
   editEmployee(input: EditEmployeeInput!): Employee @function(name: "employeeCRUDfunc-${env}")
   editAddress(input: EditAddressInput!): Address @function(name: "employeeCRUDfunc-${env}")
   editSkill(input: EditSkillInput!): Skill @function(name: "employeeCRUDfunc-${env}")
+  removeEmployee(input: RemoveEmployeeInput): Employee  @function(name: "employeeCRUDfunc-${env}")
+  removeAddress(input: RemoveAddressInput): Address  @function(name: "employeeCRUDfunc-${env}")
+  removeSkill(input: RemoveSkillInput): Skill  @function(name: "employeeCRUDfunc-${env}")
 }
 
 input AddNewEmployeeInput {
@@ -78,4 +81,16 @@ input EditSkillInput {
   id: ID!
   skillName: String
   employeeSkillsId: ID
+}
+
+input RemoveEmployeeInput {
+  id: ID!
+}
+
+input RemoveAddressInput {
+  id: ID!
+}
+
+input RemoveSkillInput {
+  id: ID!
 }

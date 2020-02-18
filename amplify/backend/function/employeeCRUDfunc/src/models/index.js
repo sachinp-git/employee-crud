@@ -2,6 +2,7 @@ const employeeActions = require("./employee");
 const addressActions = require("./address");
 const skillActions = require("./skills");
 const updateEmployee = require("./employee-update");
+const deleteEmployeeAction = require("./employee-delete");
 
 module.exports.listEmployees = employeeActions.listEmployees;
 module.exports.createEmployee = employeeActions.createEmployee;
@@ -12,3 +13,4 @@ module.exports.updateSkill = skillActions.updateSkill;
 module.exports.deleteSkill = skillActions.deleteSkill;
 module.exports.deleteAddress = addressActions.deleteAddress;
 module.exports.updateEmployee = updateEmployee.updateEmployee
+module.exports.deleteEmployee = deleteEmployeeAction.deleteEmployee;

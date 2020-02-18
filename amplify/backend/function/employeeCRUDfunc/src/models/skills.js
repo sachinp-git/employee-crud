@@ -56,7 +56,7 @@ async function updateSkill (skillData) {
         console.log(e)
     }
     console.log(JSON.stringify(result,5))
-    result.data.updateSkill;
+    return result.data.updateSkill;
 }
 
 async function deleteSkill (skillData) {
@@ -67,7 +67,7 @@ async function deleteSkill (skillData) {
         console.log(e)
     }
     console.log(JSON.stringify(result,5))
-    result.data.deleteSkill;
+    return result.data.deleteSkill;
 }
 
 module.exports.addSkill = addSkill;

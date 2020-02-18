@@ -18,7 +18,8 @@ const resolvers = {
     editAddress: models.updateAddress,
     removeAddress: models.deleteAddress,
     removeSkill: models.deleteSkill,
-    editEmployee: models.updateEmployee
+    editEmployee: models.updateEmployee,
+    removeEmployee: models.deleteEmployee
   }
 }
 

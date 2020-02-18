@@ -95,6 +95,53 @@ export const editSkill = /* GraphQL */ `
     }
   }
 `;
+export const removeEmployee = /* GraphQL */ `
+  mutation RemoveEmployee($input: RemoveEmployeeInput) {
+    removeEmployee(input: $input) {
+      id
+      firstname
+      lastname
+      address {
+        items {
+          id
+          line1
+          line2
+          city
+          state
+          zipcode
+        }
+        nextToken
+      }
+      skills {
+        items {
+          id
+          skillName
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const removeAddress = /* GraphQL */ `
+  mutation RemoveAddress($input: RemoveAddressInput) {
+    removeAddress(input: $input) {
+      id
+      line1
+      line2
+      city
+      state
+      zipcode
+    }
+  }
+`;
+export const removeSkill = /* GraphQL */ `
+  mutation RemoveSkill($input: RemoveSkillInput) {
+    removeSkill(input: $input) {
+      id
+      skillName
+    }
+  }
+`;
 export const createEmployee = /* GraphQL */ `
   mutation CreateEmployee(
     $input: CreateEmployeeInput!

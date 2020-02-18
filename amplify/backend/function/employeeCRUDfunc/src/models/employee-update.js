@@ -2,6 +2,7 @@ const Amplify = require("aws-amplify");
 const config = require("./initialize");
 const AddressModel = require("./address");
 const SkillModel = require("./skills");
+Amplify.default.configure(config.aws);
 
 const updateEmployeeMutation = /* GraphQL */ `
   mutation UpdateEmployee(
