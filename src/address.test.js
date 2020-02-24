@@ -70,7 +70,7 @@ test("list addresses", async () => {
 test("update existing address", async () => {
   const data = {
     input: {
-      id: "fe2c29b5-4cfb-43a7-a821-3fec2bc57625",
+      id: generatedAddressId,
       city: "bhadohi"
     }
   };

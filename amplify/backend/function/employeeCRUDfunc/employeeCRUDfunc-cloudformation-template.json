@@ -76,8 +76,8 @@
 				"Runtime": "nodejs10.x",
 				"Timeout": "25",
 				"Code": {
-					"S3Bucket": "amplify-employee-crud-dev-140837-deployment",
-					"S3Key": "amplify-builds/employeeCRUDfunc-5968446b6c5869484479-build.zip"
+					"S3Bucket": "amplify-employee-crud-qa-194616-deployment",
+					"S3Key": "amplify-builds/employeeCRUDfunc-574e734b333376507148-build.zip"
 				}
 			}
 		},
